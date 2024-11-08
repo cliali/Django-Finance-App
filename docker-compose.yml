@@ -34,35 +34,35 @@ services:
       - 6379:6379
     restart: always
 
-  celery:
-    build:
-      context: .
-      dockerfile: ./docker/prod.Dockerfile
-    container_name: worker
-    command: ./docker/celery_entrypoint.sh
-    volumes:
-      - .:/app
-    environment:
-      - DATABASE_URL=postgres://user:password@db:5432/finance_config
-      - CELERY_BROKER_URL=redis://redis:6379/1
-    depends_on:
-      - db
-      - redis
-    restart: on-failure
+  # celery:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/prod.Dockerfile
+  #   container_name: worker
+  #   command: ./docker/celery_entrypoint.sh
+  #   volumes:
+  #     - .:/app
+  #   environment:
+  #     - DATABASE_URL=postgres://user:password@db:5432/finance_config
+  #     - CELERY_BROKER_URL=redis://redis:6379/1
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   restart: on-failure
 
-  beats:
-    build:
-      context: .
-      dockerfile: ./docker/prod.Dockerfile
-    container_name: beats
-    command: ./docker/beats_entrypoint.sh
-    volumes:
-      - .:/app
-    environment:
-      - DATABASE_URL=postgres://user:password@db:5432/finance_config
-      - CELERY_BROKER_URL=redis://redis:6379/1
-    depends_on:
-      - db
-      - redis
-      - django
-    restart: on-failure
+  # beats:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/prod.Dockerfile
+  #   container_name: beats
+  #   command: ./docker/beats_entrypoint.sh
+  #   volumes:
+  #     - .:/app
+  #   environment:
+  #     - DATABASE_URL=postgres://user:password@db:5432/finance_config
+  #     - CELERY_BROKER_URL=redis://redis:6379/1
+  #   depends_on:
+  #     - db
+  #     - redis
+  #     - django
+  #   restart: on-failure
