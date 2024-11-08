@@ -4,95 +4,97 @@ from config.env import env, BASE_DIR
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 
 
 # Application definition
 
 LOCAL_APPS = [
-    'finance_config.core.apps.CoreConfig',
-    'finance_config.common.apps.CommonConfig',
-    'finance_config.authentication.apps.AuthenticationConfig',
+    "finance_config.core.apps.CoreConfig",
+    "finance_config.common.apps.CommonConfig",
+    "finance_config.authentication.apps.AuthenticationConfig",
 ]
 
 THIRD_PARTY_APPS = [
-    'corsheaders',
-    'rest_framework',
-    'django_celery_results',
-    'django_celery_beat',
-    'django_extensions',
-    'django_filters',
-    'drf_spectacular',
-    'djoser',
+    "corsheaders",
+    "rest_framework",
+    "django_celery_results",
+    "django_celery_beat",
+    "django_extensions",
+    "django_filters",
+    "drf_spectacular",
+    "djoser",
 ]
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
-    'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
+    "django.contrib.staticfiles",
     *THIRD_PARTY_APPS,
     *LOCAL_APPS,
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://user:password@127.0.0.1:5432/finance_config'),
+    "default": env.db(
+        "DATABASE_URL", default="postgres://user:password@127.0.0.1:5432/finance_config"
+    ),
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-if os.environ.get('GITHUB_WORKFLOW'):
+if os.environ.get("GITHUB_WORKFLOW"):
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'github_actions',
-            'USER': 'user',
-            'PASSWORD': 'password',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "github_actions",
+            "USER": "user",
+            "PASSWORD": "password",
+            "HOST": "127.0.0.1",
+            "PORT": "5432",
         }
     }
 
@@ -101,27 +103,27 @@ if os.environ.get('GITHUB_WORKFLOW'):
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = "core.User"
 
 # Internationalization
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -132,9 +134,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 APP_DOMAIN = env("APP_DOMAIN", default="http://localhost:8000")
 
@@ -151,5 +153,5 @@ from config.settings.rest import *  # noqa
 from config.settings.sessions import *  # noqa
 from config.settings.smtp4dev import *  # noqa
 from config.settings.swagger import *  # noqa
-#from config.settings.email_sending import *  # noqa
-#from config.settings.sentry import *  # noqa
+# from config.settings.email_sending import *  # noqa
+# from config.settings.sentry import *  # noqa
