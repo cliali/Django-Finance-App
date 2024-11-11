@@ -35,6 +35,7 @@ dependencies = [
     "whitenoise>=6.8.2",
     "faker>=30.8.2",
     "ruff>=0.7.3",
+    "django-allauth>=65.2.0",
 ]
 
 [tool.uv]

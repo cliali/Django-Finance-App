@@ -30,6 +30,9 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "drf_spectacular",
     "djoser",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
 ]
 
 INSTALLED_APPS = [
@@ -55,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -78,8 +82,15 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
-# Database
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
+
+# Database
 DATABASES = {
     "default": env.db(
         "DATABASE_URL", default="postgres://user:password@127.0.0.1:5432/finance_config"
@@ -142,14 +153,16 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 APP_DOMAIN = env("APP_DOMAIN", default="http://localhost:8000")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
+LOGIN_REDIRECT_URL = "tracker:index"
+LOGOUT_REDIRECT_URL = "tracker:index"
 
 from config.settings.celery import *  # noqa
 from config.settings.cors import *  # noqa
 from config.settings.djoser import *  # noqa
 from config.settings.jwt import *  # noqa
 from config.settings.logging import *  # noqa
-from config.settings.redis import *  # noqa
+
+# from config.settings.redis import *  # noqa
 from config.settings.rest import *  # noqa
 from config.settings.sessions import *  # noqa
 from config.settings.smtp4dev import *  # noqa
