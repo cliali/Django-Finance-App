@@ -15,4 +15,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(("finance_config.api.urls", "api"))),
     path("core/", include(("finance_config.core.urls", "core"))),
+    path("tracker/", include(("finance_config.tracker.urls", "tracker"))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

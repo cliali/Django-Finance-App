@@ -18,6 +18,7 @@ LOCAL_APPS = [
     "finance_config.core.apps.CoreConfig",
     "finance_config.common.apps.CommonConfig",
     "finance_config.authentication.apps.AuthenticationConfig",
+    "finance_config.tracker.apps.TrackerConfig",
 ]
 
 THIRD_PARTY_APPS = [
