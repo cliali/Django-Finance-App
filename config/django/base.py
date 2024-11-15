@@ -22,10 +22,7 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "corsheaders",
     "rest_framework",
-    "django_celery_results",
-    "django_celery_beat",
     "django_extensions",
     "django_filters",
     "drf_spectacular",
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -157,16 +153,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "tracker:index"
 LOGOUT_REDIRECT_URL = "tracker:index"
 
-from config.settings.celery import *  # noqa
-from config.settings.cors import *  # noqa
 from config.settings.djoser import *  # noqa
 from config.settings.jwt import *  # noqa
 from config.settings.logging import *  # noqa
 
-# from config.settings.redis import *  # noqa
 from config.settings.rest import *  # noqa
-from config.settings.sessions import *  # noqa
-from config.settings.smtp4dev import *  # noqa
 from config.settings.swagger import *  # noqa
-# from config.settings.email_sending import *  # noqa
-# from config.settings.sentry import *  # noqa
