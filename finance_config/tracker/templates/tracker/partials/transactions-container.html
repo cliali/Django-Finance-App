@@ -1,31 +1,44 @@
-<div class="col-span-3">
-    {% if filter.qs %}
-
-    <table class="table">
-        <thead class="text-xs text-white uppercase">
-            <tr>
-                <th class="px-6 py-3">Date</th>
-                <th class="px-6 py-3">Category</th>
-                <th class="px-6 py-3">Type</th>
-                <th class="px-6 py-3">Amount</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for transaction in filter.qs %}
+<div class="flex flex-col-reverse md:grid-cols-4 mb:gap-4">
+    <div class="col-span-3">
+        {% if filter.qs %}
+    
+        <table class="table">
+            <thead class="text-xs text-white uppercase">
                 <tr>
-                    <td>{{ transaction.date }}</td>
-                    <td>{{ transaction.category }}</td>
-                    <td>{{ transaction.type }}</td>
-                    <td>{{ transaction.amount }}</td>
+                    <th class="px-6 py-3">Date</th>
+                    <th class="px-6 py-3">Category</th>
+                    <th class="px-6 py-3">Type</th>
+                    <th class="px-6 py-3">Amount</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+    
+            <tbody>
+                {% for transaction in filter.qs %}
+                    <tr>
+                        <td>{{ transaction.date }}</td>
+                        <td>{{ transaction.category }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.amount }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+        {% else %}
+        <p class="text-2xl text-white">
+            No transactions found
+        </p>
+        {% endif %}
+    </div>
 
-    {% else %}
-    <p class="text-2xl text-white">
-        No transactions found
-    </p>
-    {% endif %}
+    <div class="col-span-1">
+        <form method="get">
+            <div class="mb-2 form-control">
+                {{ filter.form.transaction_type }}
+            </div>
+            <button class="btn btn-success">
+                Filter
+            </button>  
+        </form>
+    </div>
 </div>
