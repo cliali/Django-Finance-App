@@ -1,3 +1,5 @@
+{% load widget_tweaks %}
+
 <div class="flex flex-col-reverse md:grid-cols-4 mb:gap-4">
     <div class="col-span-3">
         {% if filter.qs %}
@@ -34,8 +36,8 @@
     <div class="col-span-1">
         <form method="get">
             <div class="mb-2 form-control">
-                {{ filter.form.transaction_type }}
-            </div>
+                {{ filter.form.transaction_type|add_label_class:"label text-white" }}
+                {% render_field filter.form.transaction_type class="select bg-gray-50 text-gray-900" %}            </div>
             <button class="btn btn-success">
                 Filter
             </button>  
