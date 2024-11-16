@@ -12,9 +12,12 @@ def index(request):
 
 @login_required
 def transactions_list(request):
-    transaction = Transaction.objects.filter(user=request.user)
-    transaction_filter = TransactionFilter(request.GET, queryset=transaction)
-    context = {"filter": transaction_filter}
-    return render(
-        request, "tracker/transactions-list.html", context
+    transaction_filter = TransactionFilter(
+        request.GET, queryset=Transaction.objects.filter(user=request.user)
     )
+
+    context = {"filter": transaction_filter}
+    if request.htmx:
+        print("hi")
+        return render(request, "tracker/partials/transactions-container.html", context)
+    return render(request, "tracker/transactions-list.html", context)
