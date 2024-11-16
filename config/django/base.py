@@ -26,6 +26,7 @@ THIRD_PARTY_APPS = [
     "debug_toolbar",
     "django_extensions",
     "django_filters",
+    "django_htmx",
     "drf_spectacular",
     "djoser",
     "allauth",
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
