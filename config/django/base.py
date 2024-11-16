@@ -1,5 +1,6 @@
 import os
-from config.env import env, BASE_DIR
+
+from config.env import BASE_DIR, env
 
 env.read_env(os.path.join(BASE_DIR, ".env"))
 

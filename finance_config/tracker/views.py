@@ -1,8 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from finance_config.tracker.models import Transaction
 from finance_config.tracker.filters import TransactionFilter
-from django.contrib.auth.decorators import login_required
+from finance_config.tracker.models import Transaction
 
 
 # Create your views here.

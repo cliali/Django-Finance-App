@@ -1,9 +1,7 @@
-from typing import Sequence, Type, TYPE_CHECKING
+from typing import TYPE_CHECKING, Sequence, Type
 
-
-from rest_framework.permissions import IsAuthenticated, BasePermission
 from rest_framework.authentication import BaseAuthentication
-
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 

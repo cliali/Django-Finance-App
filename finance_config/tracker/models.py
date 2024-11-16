@@ -1,4 +1,5 @@
 from django.db import models
+
 from config.django.base import AUTH_USER_MODEL as User
 
 
