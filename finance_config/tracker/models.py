@@ -1,6 +1,7 @@
 from django.db import models
 
 from config.django.base import AUTH_USER_MODEL as User
+from finance_config.tracker.managers import TransactionQuerySet
 
 
 class Category(models.Model):
@@ -24,6 +25,8 @@ class Transaction(models.Model):
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
+
+    objects : TransactionQuerySet = TransactionQuerySet.as_manager()
 
     def __str__(self):
         return f"{self.type} of {self.amount} on {self.date} by {self.user}"
