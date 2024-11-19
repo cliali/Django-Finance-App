@@ -7,16 +7,15 @@
 cd Django-Finance-App
 ```
 
-2- SetUp venv
+2- SetUp venv (install uv first)
 ```
-virtualenv -p python3.10 venv
-source venv/bin/activate
+uv venv
+source .venv/bin/activate
 ```
 
 3- install Dependencies
 ```
-pip install -r requirements.dev.txt
-pip install -r requirements.txt
+uv pip install -r pyproject.toml
 ```
 
 4- create your env
@@ -28,13 +27,25 @@ cp .env.example .env
 ```
 python manage.py migrate
 ```
+or (with just)
+```
+just migrate
+```
 
 6- spin off docker compose
 ```
 docker compose -f docker-compose.dev.yml up -d
 ```
+or
+```
+just dev-up
+```
 
 7- run the project
 ```
 python manage.py runserver
+```
+or
+```
+just run
 ```
