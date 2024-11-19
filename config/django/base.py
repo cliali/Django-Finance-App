@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.humanize",
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
