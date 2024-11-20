@@ -12,7 +12,11 @@
 
     <div class="mb-2 form-control text-white">
         {{ form.amount|add_label_class:"label text-white" }}
-        {% render_field form.amount class="input text-withe" %}            
+        {% render_field form.amount class="input text-withe" %}        
+        
+        {% for error in form.amount.errors %}
+            <p class="text-red-500 mt-1">{{ error }}</p> 
+        {% endfor %}
     </div>
 
     <div class="mb-2 form-control text-white">

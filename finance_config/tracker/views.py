@@ -44,6 +44,9 @@ def create_transaction(request):
             transaction.save()
             context = {"message": "transaction was added successfully"}
             return render(request, "tracker/partials/transaction-success.html", context)
+        else:
+            context = {"form": form}
+            return render(request, "tracker/partials/create-transaction.html", context)
 
     context = {"form": TransactionForm()}
     return render(request, "tracker/partials/create-transaction.html", context)
