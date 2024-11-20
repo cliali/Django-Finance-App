@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from urllib import response
 
 import pytest
 from django.urls import reverse
@@ -113,3 +114,27 @@ def test_cannot_add_transaction_with_negative_amount(
 
     assertTemplateUsed(response, "tracker/partials/create-transaction.html")
     assert "HX-Retarget" in response.headers
+
+
+@pytest.mark.django_db
+def test_update_transaction_request(user, transaction_dict_params, client):
+    client.force_login(user)
+    assert Transaction.objects.filter(user=user).count() == 1
+
+    transaction = Transaction.objects.first()
+
+    now = datetime.now().date()
+    transaction_dict_params["amount"] = 100
+    transaction_dict_params["date"] = now
+
+    client.post(
+        reverse("tracker:update-transaction", kwargs={"pk": transaction.pk}),
+        transaction_dict_params,
+    )
+
+    assert Transaction.objects.filter(user=user).count() == 1
+
+    transaction = Transaction.objects.first()
+
+    assert transaction_dict_params["amount"] == 100
+    assert transaction_dict_params["date"] == now
