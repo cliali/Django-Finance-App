@@ -32,4 +32,10 @@
     <button class="btn btn-success">
         Add
     </button>
+    <button hx-get="{% url 'tracker:transactions-list' %}"
+        hx-target="#transaction-block"
+        hx-push-url="true"
+        class="btn btn-error">
+        Cancel
+    </button>
 </form>
