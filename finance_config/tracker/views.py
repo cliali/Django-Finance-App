@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django_htmx.http import retarget
 
 from finance_config.tracker.filters import TransactionFilter
 from finance_config.tracker.forms import TransactionForm
@@ -46,7 +47,10 @@ def create_transaction(request):
             return render(request, "tracker/partials/transaction-success.html", context)
         else:
             context = {"form": form}
-            return render(request, "tracker/partials/create-transaction.html", context)
+            response = render(
+                request, "tracker/partials/create-transaction.html", context
+            )
+            return retarget(response, "#transaction-block")
 
     context = {"form": TransactionForm()}
     return render(request, "tracker/partials/create-transaction.html", context)
