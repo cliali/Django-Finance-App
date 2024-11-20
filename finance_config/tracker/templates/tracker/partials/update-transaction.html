@@ -1,0 +1,18 @@
+<h1 class="mt-8 mb-4 prose prose-2xl text-white">
+    Update Transaction
+</h1>
+<form hx-post="{% url 'tracker:update-transaction' transaction.pk %}"
+        hx-push-url="true">
+
+    {% include 'tracker/partials/transaction-form.html' %}
+
+    <button class="btn btn-success">
+        Update
+    </button>
+    <button hx-get="{% url 'tracker:transactions-list' %}"
+        hx-target="#transaction-block"
+        hx-push-url="true"
+        class="btn btn-error">
+        Cancel
+    </button>
+</form>

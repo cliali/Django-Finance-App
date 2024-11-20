@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django_htmx.http import retarget
 
 from finance_config.tracker.filters import TransactionFilter
@@ -54,3 +54,26 @@ def create_transaction(request):
 
     context = {"form": TransactionForm()}
     return render(request, "tracker/partials/create-transaction.html", context)
+
+
+@login_required
+def update_transaction(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk, user=request.user)
+    if request.method == "POST":
+        form = TransactionForm(request.POST, instance=transaction)
+        if form.is_valid():
+            form.save()
+            context = {"message": "transaction was updated successfully!"}
+            return render(request, "tracker/partials/transaction-success.html", context)
+        else:
+            context = {"form": form, "transaction": transaction}
+            response = render(
+                request, "tracker/partials/update-transaction.html", context
+            )
+            return retarget(response, "#transaction-block")
+
+    context = {
+        "form": TransactionForm(instance=transaction),
+        "transaction": transaction,
+    }
+    return render(request, "tracker/partials/update-transaction.html", context)
