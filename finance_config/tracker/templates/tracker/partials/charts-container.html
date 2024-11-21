@@ -15,7 +15,7 @@
         <form hx-get="{% url 'tracker:transactions-charts' %}"
             hx-target="#charts-container"
             hx-swap="outerHTML"
-            id="transactionform">
+            id="filterform">
             
             <div class="mb-2 form-control">
                 {{ filter.form.transaction_type|add_label_class:"label text-white" }}

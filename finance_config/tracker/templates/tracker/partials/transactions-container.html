@@ -35,16 +35,16 @@
                 Transactions
             </h1>
             
-            <a hx-get="{% url 'tracker:create-transaction' %}"
-                hx-push-url="true"
-                hx-target="#transaction-block"
-                class="cursor-pointer">
+                            <a hx-get="{% url 'tracker:create-transaction' %}"
+                    hx-push-url="true"
+                    hx-target="#transaction-block"
+                    class="cursor-pointer">
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="green" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </a>
-        </div>
+                        </div>
 
         {% if transactions %}
 
@@ -114,7 +114,7 @@
         <form hx-get="{% url 'tracker:transactions-list' %}"
             hx-target="#transaction-container"
             hx-swap="outerHTML"
-            id="transactionform">
+            id="filterform">
             
             <div class="mb-2 form-control">
                 {{ filter.form.transaction_type|add_label_class:"label text-white" }}
