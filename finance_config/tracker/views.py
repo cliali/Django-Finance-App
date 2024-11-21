@@ -5,7 +5,10 @@ from django.views.decorators.http import require_http_methods
 from django_htmx.http import retarget
 
 from config.django import dev
-from finance_config.tracker.charting import plot_income_expenses_chart
+from finance_config.tracker.charting import (
+    plot_category_pie_chart,
+    plot_income_expenses_chart,
+)
 from finance_config.tracker.filters import TransactionFilter
 from finance_config.tracker.forms import TransactionForm
 from finance_config.tracker.models import Transaction
@@ -129,10 +132,19 @@ def transactions_charts(request):
         ),
     )
     income_expense_bar = plot_income_expenses_chart(transaction_filter.qs)
-    
+
+    category_income_pie = plot_category_pie_chart(
+        transaction_filter.qs.filter(type="income")
+    )
+    category_expense_pie = plot_category_pie_chart(
+        transaction_filter.qs.filter(type="expense")
+    )
+
     context = {
         "filter": transaction_filter,
         "income_expense_bar": income_expense_bar.to_html(),
+        "category_income_pie": category_income_pie.to_html(),
+        "category_expense_pie": category_expense_pie.to_html(),
     }
     if request.htmx:
         return render(request, "tracker/partials/charts-container.html", context)
