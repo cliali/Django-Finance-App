@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_http_methods
 from django_htmx.http import retarget
@@ -12,6 +13,7 @@ from finance_config.tracker.charting import (
 from finance_config.tracker.filters import TransactionFilter
 from finance_config.tracker.forms import TransactionForm
 from finance_config.tracker.models import Transaction
+from finance_config.tracker.resources import TransactionResource
 
 
 # Create your views here.
@@ -149,3 +151,22 @@ def transactions_charts(request):
     if request.htmx:
         return render(request, "tracker/partials/charts-container.html", context)
     return render(request, "tracker/charts.html", context)
+
+
+@login_required
+def export(request):
+    if request.htmx:
+        return HttpResponse(headers={"HX-Redirect": request.get_full_path()})
+
+    transaction_filter = TransactionFilter(
+        request.GET,
+        queryset=Transaction.objects.filter(user=request.user).select_related(
+            "category"
+        ),
+    )
+
+    data = TransactionResource().export(transaction_filter.qs)
+    response = HttpResponse(data.csv)
+    response["Content-Disposition"] = "attachment; filename=transactions.csv"
+
+    return response
