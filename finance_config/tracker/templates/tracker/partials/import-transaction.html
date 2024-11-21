@@ -1,0 +1,21 @@
+<h1 class="mt-8 mb-4 prose prose-2xl text-white">
+    Import Transaction
+</h1>
+<form hx-post="{% url 'tracker:import' %}"
+        hx-encoding="multipart/form-data">
+    <div class="mb-4">
+       <input type="file" name="file" accept=".csv"
+            class="file-input max-w-xs w-full file-input-success"/> 
+    </div>
+
+    <button class="btn btn-success">
+        Upload
+    </button>
+    
+    <button hx-get="{% url 'tracker:transactions-list' %}"
+        hx-target="#transaction-block"
+        hx-push-url="true"
+        class="btn btn-error">
+        Cancel
+    </button>
+</form>

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_http_methods
 from django_htmx.http import retarget
+from tablib import Dataset
 
 from config.django import dev
 from finance_config.tracker.charting import (
@@ -170,3 +171,28 @@ def export(request):
     response["Content-Disposition"] = "attachment; filename=transactions.csv"
 
     return response
+
+
+@login_required
+def import_transactions(request):
+    if request.method == "POST":
+        file = request.FILES.get("file")
+        resource = TransactionResource()
+        dataset = Dataset()
+        dataset.load(file.read().decode(), format="csv")
+        result = resource.import_data(dataset, user=request.user, dry_run=True)
+
+        for row in result:
+            for error in row.errors:
+                print(error)
+
+        if not result.has_errors():
+            resource.import_data(dataset, user=request.user, dry_run=False)
+            context = {
+                "message": f"{len(dataset)} transactions were uploaded successfully"
+            }
+        else:
+            context = {"message": "Sorry, an error occurred."}
+        return render(request, "tracker/partials/transaction-success.html", context)
+
+    return render(request, "tracker/partials/import-transaction.html")

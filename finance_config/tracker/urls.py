@@ -9,6 +9,7 @@ urlpatterns = [
     path("transactions/create/", views.create_transaction, name="create-transaction"),
     path("transactions/charts/", views.transactions_charts, name="transactions-charts"),
     path("transactions/export/", views.export, name="export"),
+    path("transactions/import/", views.import_transactions, name="import"),
     path(
         "transactions/<int:pk>/update/",
         views.update_transaction,
