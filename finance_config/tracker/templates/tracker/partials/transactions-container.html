@@ -83,7 +83,7 @@
                             <tr hx-get="{% url 'tracker:get-transaction' %}?page={{ transactions.next_page_number }}"
                                 hx-trigger="revealed"
                                 hx-swap="afterend"
-                                hx-include="#transactionform"
+                                hx-include="#filterform"
                                 hx-indicator="#spinner">
                         {% else %}
                             <tr>

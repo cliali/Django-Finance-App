@@ -3,7 +3,6 @@ from typing import Any
 
 from django.core.management.base import BaseCommand
 from faker import Faker
-from flask.config import T
 
 from finance_config.core.models import User
 from finance_config.tracker.models import Category, Transaction
