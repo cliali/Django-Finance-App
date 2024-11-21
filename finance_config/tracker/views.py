@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django_htmx.http import retarget
 
 from config.django import dev
+from finance_config.tracker.charting import plot_income_expenses_chart
 from finance_config.tracker.filters import TransactionFilter
 from finance_config.tracker.forms import TransactionForm
 from finance_config.tracker.models import Transaction
@@ -117,3 +118,22 @@ def get_transaction(request):
         "tracker/partials/transactions-container.html#transaction_list",
         context,
     )
+
+
+@login_required
+def transactions_charts(request):
+    transaction_filter = TransactionFilter(
+        request.GET,
+        queryset=Transaction.objects.filter(user=request.user).select_related(
+            "category"
+        ),
+    )
+    income_expense_bar = plot_income_expenses_chart(transaction_filter.qs)
+    
+    context = {
+        "filter": transaction_filter,
+        "income_expense_bar": income_expense_bar.to_html(),
+    }
+    if request.htmx:
+        return render(request, "tracker/partials/charts-container.html", context)
+    return render(request, "tracker/charts.html", context)

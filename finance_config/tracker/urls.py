@@ -17,5 +17,6 @@ urlpatterns = [
         views.delete_transaction,
         name="delete-transaction",
     ),
+    path("transactions/charts/", views.transactions_charts, name="transactions-charts"),
     path("get_transactions/", views.get_transaction, name="get-transaction"),
 ]
