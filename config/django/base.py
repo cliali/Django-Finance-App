@@ -17,19 +17,14 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 
 LOCAL_APPS = [
     "finance_config.core.apps.CoreConfig",
-    "finance_config.common.apps.CommonConfig",
-    "finance_config.authentication.apps.AuthenticationConfig",
     "finance_config.tracker.apps.TrackerConfig",
 ]
 
 THIRD_PARTY_APPS = [
-    "rest_framework",
     "debug_toolbar",
     "django_extensions",
     "django_filters",
     "django_htmx",
-    "drf_spectacular",
-    "djoser",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -165,9 +160,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "tracker:index"
 LOGOUT_REDIRECT_URL = "tracker:index"
 
-from config.settings.djoser import *  # noqa
-from config.settings.jwt import *  # noqa
 from config.settings.logging import *  # noqa
-
-from config.settings.rest import *  # noqa
-from config.settings.swagger import *  # noqa
