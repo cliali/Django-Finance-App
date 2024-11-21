@@ -34,6 +34,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "widget_tweaks",
+    "template_partials",
 ]
 
 INSTALLED_APPS = [
