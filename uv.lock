@@ -258,6 +258,15 @@ wheels = [
 ]
 
 [[package]]
+name = "diff-match-patch"
+version = "20241021"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/ad/32e1777dd57d8e85fa31e3a243af66c538245b8d64b7265bec9a61f2ca33/diff_match_patch-20241021.tar.gz", hash = "sha256:beae57a99fa48084532935ee2968b8661db861862ec82c6f21f4acdd6d835073", size = 39962 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/bb/2aa9b46a01197398b901e458974c20ed107935c26e44e37ad5b0e5511e44/diff_match_patch-20241021-py3-none-any.whl", hash = "sha256:93cea333fb8b2bc0d181b0de5e16df50dd344ce64828226bda07728818936782", size = 43252 },
+]
+
+[[package]]
 name = "dj-database-url"
 version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -355,6 +364,7 @@ dependencies = [
     { name = "django-extensions" },
     { name = "django-filter" },
     { name = "django-htmx" },
+    { name = "django-import-export" },
     { name = "django-storages" },
     { name = "django-template-partials" },
     { name = "django-widget-tweaks" },
@@ -408,6 +418,7 @@ requires-dist = [
     { name = "django-extensions", specifier = ">=3.2.3" },
     { name = "django-filter", specifier = ">=24.3" },
     { name = "django-htmx", specifier = ">=1.21.0" },
+    { name = "django-import-export", specifier = ">=4.3.1" },
     { name = "django-storages", specifier = ">=1.14.4" },
     { name = "django-template-partials", specifier = ">=24.4" },
     { name = "django-widget-tweaks", specifier = ">=1.5.0" },
@@ -460,6 +471,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c7/5c/f6b7e9102a86c69b018142c5e3255b7f983b4f6545fe8e9bbb326e903be1/django_htmx-1.21.0.tar.gz", hash = "sha256:6ed3b42effd5980f22e68f36cd14ee4311bff3b6cb8435a89e27f45995691572", size = 9611 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9f/ec/0d68c022dac4a539cdd2cf8b2e23a034da9d6ef864e4bc324a5fe2b50c28/django_htmx-1.21.0-py3-none-any.whl", hash = "sha256:64bc31463017a80552b767bc216ee5700248fa72e7ccd2963495e69afbdb6abe", size = 6901 },
+]
+
+[[package]]
+name = "django-import-export"
+version = "4.3.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "diff-match-patch" },
+    { name = "django" },
+    { name = "tablib" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c7/88/b9077b0e0c9cf05d98f7a212877ba96bb302f5581116e3b7a15f9528c339/django_import_export-4.3.1.tar.gz", hash = "sha256:9e47bc3bf632d930870dab221c5ef0bb02c5d5efd3720c4607c08f3f946a1caa", size = 2218400 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/00/ef/65b49828e2128cbc4c062a2e21976dfa1b73892a69fe07e0a638dfb06fdf/django_import_export-4.3.1-py3-none-any.whl", hash = "sha256:7cd9165851872c8b0eb6ce71029f1e92411b757c2a2e69e7a7ea12e6274c173a", size = 139647 },
 ]
 
 [[package]]
@@ -1700,6 +1725,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/28/e3/55dcc2cfbc3ca9c29519eb6884dd1415ecb53b0e934862d3559ddcb7e20b/stack_data-0.6.3.tar.gz", hash = "sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9", size = 44707 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl", hash = "sha256:d5558e0c25a4cb0853cddad3d77da9891a08cb85dd9f9f91b9f8cd66e511e695", size = 24521 },
+]
+
+[[package]]
+name = "tablib"
+version = "3.7.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/78/afdf974431f58f0270113e8c50bb020f4d3927eaf0a47806c55e91da3e70/tablib-3.7.0.tar.gz", hash = "sha256:f9db84ed398df5109bd69c11d46613d16cc572fb9ad3213f10d95e2b5f12c18e", size = 121221 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5a/dd/d578310f8ae1cd8e0c6f16a2ff281b8f9993f6cdba1b3d48f92bfae536b6/tablib-3.7.0-py3-none-any.whl", hash = "sha256:9a6930037cfe0f782377963ca3f2b1dae3fd4cdbf0883848f22f1447e7bb718b", size = 47534 },
 ]
 
 [[package]]
