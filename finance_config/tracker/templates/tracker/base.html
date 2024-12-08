@@ -1,3 +1,4 @@
+{% load compress %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -13,11 +14,12 @@
             Personal Finance Tracker
         {% endblock %}
     </title>
+    
+    {% compress css%}
+        <link href="{% static 'src/output.css' %}" rel="stylesheet" />
+    {% endcompress %}
 
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-
-    <!-- Custom files -->
+    <!-- Custom files -->   
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 
 
