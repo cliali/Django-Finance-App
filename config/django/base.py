@@ -30,6 +30,7 @@ THIRD_PARTY_APPS = [
     "widget_tweaks",
     "template_partials",
     "import_export",
+    "compressor",
 ]
 
 INSTALLED_APPS = [
@@ -160,3 +161,4 @@ LOGIN_REDIRECT_URL = "tracker:index"
 LOGOUT_REDIRECT_URL = "tracker:index"
 
 from config.settings.logging import *  # noqa
+from config.settings.compressor import *  # noqa
