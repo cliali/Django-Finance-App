@@ -20,7 +20,6 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "debug_toolbar",
     "django_extensions",
     "django_filters",
     "django_htmx",
@@ -57,7 +56,6 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
