@@ -2,50 +2,56 @@
 
 ## project setup
 
-1- compelete cookiecutter workflow (recommendation: leave project_slug empty) and go inside the project
-```
+1- Compelete cookiecutter workflow (recommendation: leave project_slug empty) and go inside the project
+
+```bash
 cd Django-Finance-App
 ```
 
-2- SetUp venv (install uv first)
+2- Setup Virtualenv with uv
+
+```bash
+pip install uv --user
 ```
-uv venv
+
+```bash
+uv venv --python 3.13
 source .venv/bin/activate
 ```
 
-3- install Dependencies
-```
-uv pip install -r pyproject.toml
+3- Install Dependencies
+
+```bash
+uv sync
 ```
 
-4- create your env
-```
+4- Create your env
+
+```bash
 cp .env.example .env
 ```
 
-5- Create tables
-```
-python manage.py migrate
-```
-or (with just)
-```
-just migrate
-```
+5- Spin off docker compose
 
-6- spin off docker compose
-```
+```bash
 docker compose -f docker-compose.dev.yml up -d
 ```
-or
-```
-just dev-up
+
+6- Create tables
+
+```bash
+python manage.py migrate
 ```
 
-7- run the project
+7- Install tailwindcss with **node**
+
+```bash
+npm install
+npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css
 ```
+
+8- Run the project
+
+```bash
 python manage.py runserver
-```
-or
-```
-just run
 ```
